@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pipe-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pipe-app
+  template:
+    metadata:
+      labels:
+        app: pipe-app
+    spec:
+      containers:
+        - name: pipe-app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 5000

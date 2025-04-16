@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pipe-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/ilianvo/GitOps-repo
+    targetRevision: main
+    path: helm/pipe-app
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pipe-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
