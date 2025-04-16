@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pipe-app
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: pipe-app
+  ports:
+    - port: 80             # External port (what the ALB connects to)
+      targetPort: 5000     # ✅ Must match your app's container port
+  type: ClusterIP
