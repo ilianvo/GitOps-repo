@@ -9,4 +9,4 @@ spec:
   ports:
     - port: 80             # External port (what the ALB connects to)
       targetPort: 5000     # ✅ Must match your app's container port
-  type: ClusterIP
+  type: LoadBalancer
